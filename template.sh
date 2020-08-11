@@ -14,10 +14,10 @@ function ctrl_c(){
         exit 0
 }
 
-# validación de argumento en ejecución del script
+# valida si se pasa un argumento al ejecutar el script 
 if [ $1 ]; then 
 ----> "Código aquí"
 else
- echo -e "\n${yellowColour} [Uso]: ./check_system.sh ARG ${endColour}"
+ echo -e "\n${yellowColour}[Uso]: SCRIPT.SH ARG/FILE${endColour}"
  exit 0
 fi
