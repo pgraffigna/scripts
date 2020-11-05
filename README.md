@@ -8,3 +8,6 @@ Repo con scripts en bash
 - check_open_ports
 - ping_sweep
 - template
+- banner
+- kvm
+- progress_bar
