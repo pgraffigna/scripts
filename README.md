@@ -11,3 +11,4 @@ Repo con scripts en bash
 - banner
 - kvm
 - progress_bar
+- zfs_raid
