@@ -15,13 +15,24 @@ function ctrl_c(){
         exit 0
 }
 
-echo -e "${yellowColour} [!!] Iniciando la instalación del Hipervisor -- KVM ${endColour}"
-sudo apt update && sudo apt install -y qemu qemu-kvm libvirt-daemon virtinst bridge-utils libvirt-bin libvirt-doc
+echo -e "\n ${yellowColour} [!!] Instalando KVM ${endColour}"
+sudo apt install -y qemu-kvm qemu libvirt-bin virt-manager virtinst bridge-utils cpu-checker virt-viewer
 
-echo -e "${yellowColour} [!!] Activando el servicio LIBVIRTD ${endColour}"
+echo -e "\n ${yellowColour} [!!] Chequeando que el CPU tiene habilitada la virtualización (VT-x) ${endColour}"
+kvm-ok &> /dev/null
+if [ $? -eq 1 ]; then
+        echo -e "El equipo no permite la virtualización"
+    exit 0
+fi
+
+echo -e "\n ${yellowColour} [!!] Añadiendo el usuario a los grupos de libvirt y a kvm ${endColour}"
+cat /etc/group | grep libvirt | awk -F':' {'print $1'} | xargs -n1 sudo adduser $USER
+sudo adduser $USER kvm
+
+echo -e "\n ${yellowColour} [!!] Relogueando al usuario y confirmando que es miembro de los grupos ${endColour}"
+exec su -l $USER && id | grep libvirt
+
+echo -e "\n ${yellowColour} [!!] Iniciando el servicio libvirtd ${endColour}"
 sudo systemctl enable libvirtd --now
-
-read -p "[!!] Agregando tu usuario al grupo kvm -- ingresa el nombre de tu usuario: " usuario
-sudo usermod -aG kvm $usuario
 
 echo -e "${greenColour} [!!] Todos los procesos terminaron correctamente!!! ${endColour}"
