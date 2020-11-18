@@ -11,4 +11,6 @@ Repo con scripts en bash
 - banner
 - kvm
 - progress_bar
+- guessinggame.sh
+- Makefile
 - zfs_raid
