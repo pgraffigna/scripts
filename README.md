@@ -15,3 +15,4 @@ Repo con scripts en bash
 - Makefile
 - zfs_raid
 - crear_usuario
+- install_vnc
