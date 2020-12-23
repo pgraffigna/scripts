@@ -11,37 +11,37 @@ endColour="\033[0m\e[0m"
 #CTRL-C
 trap ctrl_c INT
 function ctrl_c(){
-        echo -e "\n${redColour}[++] Programa Terminado [++]${endColour}"
+        echo -e "\n${redColour}Programa Terminado ${endColour}"
         exit 0
 }
 
-echo -e "\n${yellowColour} Instalando dependencias ${endColour}"
+echo -e "\n${yellowColour}Instalando dependencias ${endColour}"
 sudo apt update
 sudo apt install -y xfce4 xfce4-goodies tightvncserver
 
-echo -e "\n${yellowColour} Configurando VNC - La contraseña debe tener entre seis y ocho caracteres de largo ${endColour}"
+echo -e "\n${yellowColour}Configurando VNC - La contraseña debe tener entre seis y ocho caracteres de largo ${endColour}"
 vncserver
 
-echo -e "\n${yellowColour} Detenemos la instancia para hacer cambios ${endColour}"
+echo -e "\n${yellowColour}Detenemos la instancia para hacer cambios ${endColour}"
 vncserver -kill :1
 
-echo -e "\n${yellowColour} Hacemos copia de seguridad del archivo y creamos uno nuevo ${endColour}"
+echo -e "\n${yellowColour}Hacemos copia de seguridad del archivo y creamos uno nuevo ${endColour}"
 mv ~/.vnc/xstartup ~/.vnc/xstartup.bak && touch ~/.vnc/xstartup
 
-echo -e "\n${yellowColour} Modificamos el archivo ${endColour}"
+echo -e "\n${yellowColour}Modificamos el archivo ${endColour}"
 cat <<EOF >> ~/.vnc/xstartup
 #!/bin/bash
 xrdb $HOME/.Xresources 
 startxfce4 & 
 EOF
 
-echo -e "\n${yellowColour} Le damos permiso de ejecución ${endColour}"
+echo -e "\n${yellowColour}Le damos permiso de ejecución ${endColour}"
 chmod +x ~/.vnc/xstartup
 
-echo -e "\n${yellowColour} Iniciamos el servicio ${endColour}"
+echo -e "\n${yellowColour}Iniciamos el servicio ${endColour}"
 vncserver
 
-echo -e "\n${yellowColour} creación de servicio de sistema ${endColour}"
+echo -e "\n${yellowColour}Creación de servicio de sistema ${endColour}"
 sudo touch /etc/systemd/system/vncserver@.service
 sudo tee -a /etc/systemd/system/vncserver@.service > /dev/null  <<EOF
 
@@ -64,26 +64,27 @@ ExecStop=/usr/bin/vncserver -kill :%i
 WantedBy=multi-user.target
 EOF
 
-echo -e "\n${yellowColour} Modificando los datos de nuestro usuario ${endColour}"
+echo -e "\n${yellowColour}Modificando los datos de nuestro usuario ${endColour}"
 read -p "Ingresa el nombre del usuario local
  >> " USUARIO
 sudo sed -i "s/usuario/$USUARIO/g" /etc/systemd/system/vncserver@.service
 
-echo -e "\n${yellowColour} Recargamos y activamos el servicio ${endColour}"
+echo -e "\n${yellowColour}Recargamos y activamos el servicio ${endColour}"
 sudo systemctl daemon-reload && sudo systemctl enable vncserver@1.service
 
-echo -e "\n${yellowColour} Detenemos la instancia ${endColour}"
+echo -e "\n${yellowColour}Detenemos la instancia ${endColour}"
 vncserver -kill :1
 
-echo -e "\n${yellowColour} Iniciamos el servicio VNC ${endColour}"
+echo -e "\n${yellowColour}Iniciamos el servicio VNC ${endColour}"
 sudo systemctl start vncserver@1
 
-echo -e "\n${greenColour} Todos los procesos terminaron correctamente!!! ${endColour}"
+echo -e "\n${greenColour}Todos los procesos terminaron correctamente!!! ${endColour}"
 
 # Para consultar el estado del servicio
 # sudo systemctl status vncserver@1
 
 # Tunel local para encriptar la conexión VNC
 # Desde el equipo cliente
-# para conectar usar localhost:5901
 # ssh -L 5901:127.0.0.1:5901 -C -N -l vagrant 192.168.60.10
+
+# para conectar desde otro equipo usar localhost:5901

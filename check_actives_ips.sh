@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Colours
+#Colores
 greenColour="\e[0;32m\033[1m"
 redColour="\e[0;31m\033[1m"
 yellowColour="\e[0;33m\033[1m"
@@ -14,12 +14,14 @@ function ctrl_c(){
         echo -e "\n${redColour}[++] Programa Terminado [++]${endColour}"
         exit 0
 }
+
 FILE=$1
+
 if [ $1 ]; then 
     while read LINE; do
         ping -c 1 $LINE | grep 64| awk '{print $4}' | tr ':' ' '
     done < $FILE
 else
- echo -e "${yellowColour} [Uso]: ./check_system.sh FILE ${endColour}"
+ echo -e "${yellowColour}[Uso]: check_system.sh FILE ${endColour}"
  exit 0
 fi

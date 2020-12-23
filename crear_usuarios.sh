@@ -2,8 +2,6 @@
 # Script modificado x Pablo Graffigna nov-2020
 # version 1
 
-clear
-
 #Colours
 greenColour="\e[0;32m\033[1m"
 redColour="\e[0;31m\033[1m"
@@ -45,7 +43,7 @@ if [ $(id -u) -eq 0 ]; then
 read -p "Ingresa el nombre del usuario, el password y el n° de patrimonio separados por espacio ej:USUARIO PASSWORD PATRIMONIO
 > " -ra DATOS
 
-# validando que el array contenga "solo" 3 elementos
+# validando que el array contenga solo 3 elementos
 	if [ "${#DATOS[@]}" -ne 3  ]; then
 	   	echo -e "\n${redColour} [++] Los datos cargados no son suficientes, cargar correctamente"
            	exit 0
