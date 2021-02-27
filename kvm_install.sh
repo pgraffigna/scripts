@@ -4,8 +4,6 @@
 greenColour="\e[0;32m\033[1m"
 redColour="\e[0;31m\033[1m"
 yellowColour="\e[0;33m\033[1m"
-blueColour="\e[0;34m\033[1m"
-purpleColour="\e[0;35m\033[1m"
 endColour="\033[0m\e[0m"
 
 #CTRL-C
@@ -16,7 +14,7 @@ function ctrl_c(){
 }
 
 echo -e "\n${yellowColour}[!!] Instalando KVM ${endColour}"
-sudo apt install -y qemu-kvm qemu libvirt-bin virt-manager virtinst bridge-utils cpu-checker virt-viewer
+sudo apt update; sudo apt install -y qemu-kvm qemu libvirt-bin virtinst bridge-utils cpu-checker virt-viewer
 
 echo -e "\n${yellowColour}[!!] Chequeando que el CPU tiene habilitada la virtualización (VT-x) ${endColour}"
 kvm-ok &> /dev/null
