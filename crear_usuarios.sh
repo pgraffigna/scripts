@@ -32,7 +32,7 @@ banner
 #Ctrl-C
 trap ctrl_c INT
 function ctrl_c(){
-        echo -e "\n${redColour}[++] Programa Terminado [++]${endColour}"
+        echo -e "\n${redColour}Programa Terminado por el usuario ${endColour}"
         exit 0
 }
 
@@ -40,19 +40,19 @@ function ctrl_c(){
 if [ $(id -u) -eq 0 ]; then
 
 # cargando los datos del usuario y el equipo
-read -p "Ingresa el nombre del usuario, el password y el n° de patrimonio separados por espacio ej:USUARIO PASSWORD PATRIMONIO
-> " -ra DATOS
+read -p "$(echo -e ${blueColour}Ingresa el nombre del usuario y el password separados por espacio ej:USUARIO PASSWORD ${endColour})
+ >>  " -ra DATOS
 
-# validando que el array contenga solo 3 elementos
-	if [ "${#DATOS[@]}" -ne 3  ]; then
-	   	echo -e "\n${redColour} [++] Los datos cargados no son suficientes, cargar correctamente"
-           	exit 0
+# validando que el array contenga solo 2 elementos
+	if [ "${#DATOS[@]}" -ne 2 ]; then
+	   	echo -e "\n${redColour}Los datos cargados no son suficientes, cargar correctamente ${endColour}"
+        exit 0
 	else
 		egrep "^${DATOS[0]}" /etc/passwd >/dev/null
 
 		if [ $? -eq 0 ]; then
-			echo -e "\n${redColour} [++] El usuario ${DATOS[0]} ya existe, saliendo del programa!!! ${endColour}"
-			exit 0
+					echo -e "\n${redColour}El usuario ${DATOS[0]} ya existe, saliendo del programa!!!${endColour}"
+					exit 0
 		else
        	        	pass=$(perl -e 'print crypt($ARGV[0], "PASSWORD")' "${DATOS[1]}")
                 	useradd -s /bin/bash -m -p "$pass" "${DATOS[0]}"
@@ -60,20 +60,13 @@ read -p "Ingresa el nombre del usuario, el password y el n° de patrimonio separ
 			[ $? -eq 0 ]
       	        	cp -Rfa /home/vagrant/\. /home/"${DATOS[0]}"
 			chown -R "${DATOS[0]}"":""${DATOS[0]}" /home/"${DATOS[0]}"/
-   			echo -e "\n${greenColour} El usuario ${DATOS[0]} fue añadido con exito! ${endColour}"
-
-			hostname="alv2""-""${DATOS[2]}"
-
-			echo -e "\n${yellowColour} El nombre del equipo es $hostname ${endColour}"
-			echo "$hostname" > /etc/hostname
-			echo "	127.0.0.1 localhost
-           			127.0.1.1 $hostname" > /etc/hosts
+   			echo -e "\n${greenColour}El usuario ${DATOS[0]} fue añadido con exito! ${endColour}"
 
 			echo "DrivePathC=/home/${DATOS[0]}/Escritorio/" >> /home/"${DATOS[0]}"/.ICAClient/wfclient.ini 
-           		echo -e "\n${greenColour} Todos los procesos terminaron correctamente :) ${endColour}"
+      			echo -e "\n${greenColour}Todos los procesos terminaron correctamente :) ${endColour}"
 		fi
 	fi
 else
-	echo -e "${redColour} Correr con SUDO!!! ${endColour}"
+	echo -e "${redColour}Correr con SUDO!!! ${endColour}"
 	exit 0
 fi
