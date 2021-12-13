@@ -69,7 +69,6 @@ function miFuncion () {
 }
 miFuncion
 
----
 #!/bin/bash
 function saludo() {
   for NOMBRE in $@
@@ -87,3 +86,17 @@ Si hay error termina la ejecucion del script
 
 #!/bin/bash -v
 Modo Verbose
+
+# válida si un programa esta presente en el sistema
+if ! [ -x "$(command -v op)" ]; then 
+	echo "el programa no existe lo instalo"
+else	
+	echo "el programa existe..salgo"
+	exit 1	
+fi
+
+# válida si la carpeta es un punto de montaje
+if ! mountpoint -q "$DATA_DIR"; then
+  mount -o discard,defaults,noatime "$VOLUME_NAME" "$DATA_DIR"
+fi
+

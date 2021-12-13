@@ -16,23 +16,6 @@ function ctrl_c(){
         exit 0
 }
 
-#BANNER
-function banner(){
-
-echo -e "${greenColour}
-
-	.__        ___.
-	|  | _____ \_ |__   ______
-	|  | \__  \ | __ \ /  ___/
-	|  |__/ __ \| \_\ \\___ \
-    |____(____  /___  /____  >
-	          \/    \/     \/
-
-${endColour}"
-}
-
-banner
-
 echo -e "${greenColour}[!!] Parcheando el sistema para agregar barra de progreso al comando CP/MV ${endColour}"
 echo -e "${yellowColour}[!!] Instalando requisitos ${endColour}"
 sudo apt update && sudo apt install -y build-essential

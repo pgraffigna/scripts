@@ -15,20 +15,6 @@ function ctrl_c(){
         exit 0
 }
 
-function banner(){
-echo -e "${greenColour}
-
-.__        ___.
-|  | _____ \_ |__   ______
-|  | \__  \ | __ \ /  ___/
-|  |__/ __ \| \_\ \\___ \
-|____(____  /___  /____  >
-          \/    \/     \/
-${endColour}"
-}
-
-banner
-
 echo -e "${greenColour}Iniciando la instalación del HomeLAB en Ubuntu Server 20.04 ${endColour}"
 echo -e "\n${yellowColour}Actualizando los paquetes ${endColour}"
 sudo apt update && sudo apt upgrade -y 

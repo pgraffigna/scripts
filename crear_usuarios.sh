@@ -10,25 +10,6 @@ blueColour="\e[0;34m\033[1m"
 purpleColour="\e[0;35m\033[1m"
 endColour="\033[0m\e[0m"
 
-#Banner
-function banner(){
-
-echo -e "${greenColour}   
-
-
-_________       .__   __.                       
-\_   ___ \ __ __|  |_/  |_ __ ______________   
-/    \  \/|  |  \  |\   __\  |  \_  __ \__  \  
-\     \___|  |  /  |_|  | |  |  /|  | \// __ \_
- \______  /____/|____/__| |____/ |__|  (____  /
-        \/                                  \/ 
-
-
-${endColour}"
-}
-
-banner
-
 #Ctrl-C
 trap ctrl_c INT
 function ctrl_c(){
