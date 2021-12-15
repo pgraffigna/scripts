@@ -39,12 +39,9 @@ read -p "$(echo -e ${blueColour}Ingresa el nombre del usuario y el password sepa
                 	useradd -s /bin/bash -m -p "$pass" "${DATOS[0]}"
 
 			[ $? -eq 0 ]
-      	        	cp -Rfa /home/vagrant/\. /home/"${DATOS[0]}"
+      	        	cp -Rfa /home/sistemas/\. /home/"${DATOS[0]}"
 			chown -R "${DATOS[0]}"":""${DATOS[0]}" /home/"${DATOS[0]}"/
    			echo -e "\n${greenColour}El usuario ${DATOS[0]} fue añadido con exito! ${endColour}"
-
-			echo "DrivePathC=/home/${DATOS[0]}/Escritorio/" >> /home/"${DATOS[0]}"/.ICAClient/wfclient.ini 
-      			echo -e "\n${greenColour}Todos los procesos terminaron correctamente :) ${endColour}"
 		fi
 	fi
 else

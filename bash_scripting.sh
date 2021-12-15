@@ -100,3 +100,7 @@ if ! mountpoint -q "$DATA_DIR"; then
   mount -o discard,defaults,noatime "$VOLUME_NAME" "$DATA_DIR"
 fi
 
+# sshpass en scripts
+echo '!4u2tryhack' > pass_file
+chmod 0400 pass_file
+sshpass -f pass_file ssh -o StrictHostKeyChecking=no username@host.example.com
