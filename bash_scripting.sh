@@ -104,3 +104,10 @@ fi
 echo '!4u2tryhack' > pass_file
 chmod 0400 pass_file
 sshpass -f pass_file ssh -o StrictHostKeyChecking=no username@host.example.com
+
+# bash_heredoc
+#!/bin/bash
+cat > testing.txt << EOF
+El directorio donde estas es: $PWD
+Sos el usuario: $(whoami)
+EOF
