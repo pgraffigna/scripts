@@ -1,0 +1,28 @@
+{
+    "settingsReloadIntervalMinutes": 1,
+    "fullscreen": true,
+    "autoStart": true,
+    "lazyLoadTabs": false,
+    "websites": [
+      {
+        "url": "http://localhost/#",
+        "duration": 90,
+        "tabReloadIntervalSeconds": 90
+      },
+      {
+        "url": "http://alv-nagios-01/nagios/",
+        "duration": 90,
+        "tabReloadIntervalSeconds": 90
+      },
+      {  
+        "url": "http://alv-portainer-01:3030/d/o9mIe_Aik/internet-connection?orgId=1&refresh=5m&from=now-24h&to=now",
+        "duration": 90,
+        "tabReloadIntervalSeconds": 90
+      },
+      {  
+        "url": "http://alv-portainer-01/",
+        "duration": 90,
+        "tabReloadIntervalSeconds": 80
+      }
+    ]
+  }

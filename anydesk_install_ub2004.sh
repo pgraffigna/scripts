@@ -7,9 +7,9 @@ redColor="\e[0;31m\033[1m"
 yellowColor="\e[0;33m\033[1m"
 endColor="\033[0m\e[0m"
 
-ANYDESK=https://download.anydesk.com/linux/anydesk_6.1.0-1_amd64.deb
-LIBGTKG=http://mirrors.kernel.org/ubuntu/pool/universe/g/gtkglext/libgtkglext1_1.2.0-9_amd64.deb
-LIBPANGOX=http://mirrors.kernel.org/ubuntu/pool/universe/p/pangox-compat/libpangox-1.0-0_0.0.2-5ubuntu1_amd64.deb
+ANYDESK="https://download.anydesk.com/linux/anydesk_6.1.0-1_amd64.deb"
+LIBGTKG="http://mirrors.kernel.org/ubuntu/pool/universe/g/gtkglext/libgtkglext1_1.2.0-9_amd64.deb"
+LIBPANGOX="http://mirrors.kernel.org/ubuntu/pool/universe/p/pangox-compat/libpangox-1.0-0_0.0.2-5ubuntu1_amd64.deb"
 
 trap "rm *.deb" EXIT
 

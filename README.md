@@ -1,3 +1,3 @@
 # bash_scripts
 
-Repo con scripts en bash
+Repo con scripts en bash.
