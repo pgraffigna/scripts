@@ -38,7 +38,7 @@ echo -e "${amarillo}Configurando el tema powerlevel10k ${fin}\n"
 sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="powerlevel10k/powerlevel10k"#' .zshrc
 
 echo -e "${verde}[**] 1 - Configurar la fuente en la terminal [**] ${fin}"
-echo -e "${verde}[**] 2 - cerrar/abrir la terminal configurar p10k [**] ${fin}"
+echo -e "${verde}[**] 2 - cerrar/abrir la terminal para terminar de configurar p10k [**] ${fin}"
 
 
                 
