@@ -24,11 +24,11 @@ if [ $? -eq 1 ]; then
 fi
 
 echo -e "\n${yellowColour}[!!] Añadiendo el usuario a los grupos de libvirt y a kvm ${endColour}"
-cat /etc/group | grep libvirt | awk -F':' {'print $1'} | xargs -n1 sudo adduser $USER
-sudo adduser $USER kvm
+grep libvirt < /etc/group | awk -F':' "{'print $1'}" | xargs -n1 sudo adduser "$USER"
+sudo adduser "$USER" kvm
 
 echo -e "\n${yellowColour}[!!] Relogueando al usuario y confirmando que es miembro de los grupos ${endColour}"
-exec su -l $USER && id | grep libvirt
+exec su -l "$USER" && id | grep libvirt
 
 echo -e "\n${yellowColour}[!!] Iniciando el servicio libvirtd ${endColour}"
 sudo systemctl enable libvirtd --now

@@ -15,13 +15,18 @@ function ctrl_c(){
         exit 0
 }
 
+# archivo con listado de ips
 FILE=$1
 
-if [ $1 ]; then 
+if [ $1 ]; then
+
     while read LINE; do
         ping -c 1 $LINE | grep 64| awk '{print $4}' | tr ':' ' '
     done < $FILE
+
 else
+
  echo -e "${yellowColour}[Uso]: check_system.sh FILE ${endColour}"
  exit 0
+
 fi

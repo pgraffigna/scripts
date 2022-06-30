@@ -4,7 +4,6 @@ greenColour="\e[0;32m\033[1m"
 redColour="\e[0;31m\033[1m"
 yellowColour="\e[0;33m\033[1m"
 blueColour="\e[0;34m\033[1m"
-purpleColour="\e[0;35m\033[1m"
 endColour="\033[0m\e[0m"
 
 #Ctrl-C
@@ -21,7 +20,7 @@ echo -e "\n${yellowColour}Lista particiones (para saber donde esta el Windows) $
 lsblk -f
 
 echo -e "\n${yellowColour}Elegi la partición con windows${endColour}"
-read -p "$(echo -e ${blueColour}Ingresa el nombre de la particion sin el /dev: ${endColour})" PART
+read -r -p "$(echo -e "${blueColour}"Ingresa el nombre de la particion sin el /dev: "${endColour}")" PART
 
 sudo mkdir /tmp/windows && sudo mount.ntfs /dev/"$PART" /tmp/windows
 
@@ -31,7 +30,7 @@ cp /tmp/windows/Windows/System32/config/SAM /tmp/windows/Windows/System32/config
 echo -e "\n${yellowColour}Estos son los usuarios ${endColour}"
 chntpw /tmp/windows/Windows/System32/config/SAM -l
 
-read -p "$(echo -e ${blueColour}Ingresa 1 si queres activar el usuario Administrador o 2 si queres blanquear la clave de algun usuario: ${endColour})" RESPUESTA 
+read -r -p "$(echo -e "${blueColour}"Ingresa 1 si queres activar el usuario Administrador o 2 si queres blanquear la clave de algun usuario: "${endColour}")" RESPUESTA 
 
 case "$RESPUESTA" in
   1)
@@ -40,7 +39,7 @@ case "$RESPUESTA" in
     ;;
   2)
     echo -e "\n${greenColour}La respuesta es 2 ${endColour}"
-    read -p "$(echo -e ${greenColour}Ingresa el nombre del usuario: ${endColour})" USUARIO
+    read -r -p "$(echo -e "${greenColour}"Ingresa el nombre del usuario: "${endColour}")" USUARIO
     chntpw /tmp/windows/Windows/System32/config/SAM -u "$USUARIO"
     ;;
   *)

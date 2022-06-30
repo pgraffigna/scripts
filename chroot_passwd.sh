@@ -19,7 +19,7 @@ lsblk -f | grep 'sd'
 echo -e "\n${yellowColour}Creando el directorio donde montar el SO ${endColour}"
 sudo mkdir /mnt/recovery
 
-read -p "$(echo -e ${yellowColour}Ingresa el nombre de la particion a montar sin el /dev: ${endColour})" PART
+read -r -p "$(echo -e "${yellowColour}"Ingresa el nombre de la particion a montar sin el /dev: "${endColour}")" PART
 sudo mount /dev/"$PART" /mnt/recovery
 
 echo -e "\n${yellowColour}Accediendo via CHROOT ${endColour}"

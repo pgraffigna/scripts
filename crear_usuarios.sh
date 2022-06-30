@@ -5,9 +5,7 @@
 #Colours
 greenColour="\e[0;32m\033[1m"
 redColour="\e[0;31m\033[1m"
-yellowColour="\e[0;33m\033[1m"
 blueColour="\e[0;34m\033[1m"
-purpleColour="\e[0;35m\033[1m"
 endColour="\033[0m\e[0m"
 
 #Ctrl-C
@@ -18,10 +16,10 @@ function ctrl_c(){
 }
 
 # validando si el usuario tiene permisos para correr el script
-if [ $(id -u) -eq 0 ]; then
+if [ "$(id -u)" -eq 0 ]; then
 
 # cargando los datos del usuario y el equipo
-read -p "$(echo -e ${blueColour}Ingresa el nombre del usuario y el password separados por espacio ej:USUARIO PASSWORD ${endColour})
+read -p "$(echo -e "${blueColour}"Ingresa el nombre del usuario y el password separados por espacio ej:USUARIO PASSWORD "${endColour}")
  >>  " -ra DATOS
 
 # validando que el array contenga solo 2 elementos
@@ -29,8 +27,7 @@ read -p "$(echo -e ${blueColour}Ingresa el nombre del usuario y el password sepa
 	   	echo -e "\n${redColour}Los datos cargados no son suficientes, cargar correctamente ${endColour}"
         exit 0
 	else
-		egrep "^${DATOS[0]}" /etc/passwd >/dev/null
-
+		grep -E "^${DATOS[0]}" /etc/passwd >/dev/null
 		if [ $? -eq 0 ]; then
 					echo -e "\n${redColour}El usuario ${DATOS[0]} ya existe, saliendo del programa!!!${endColour}"
 					exit 0

@@ -20,9 +20,7 @@ function ctrl_c(){
 }
 
 # condicional que chequea que si esta instalada la aplicacion
-ls /usr/local/bin/youtube-dl >/dev/null
-
-if [[ $? -eq 0  ]]; then
+if [ "$(command -v /usr/local/bin/youtube-dl)" -eq 0  ]; then
 echo -e "${greenColour}youtube-dl esta instalado!!!..seguimos ${endColour}"
 
 else
@@ -32,14 +30,14 @@ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtub
 sudo chmod a+rx /usr/local/bin/youtube-dl
 fi
 
-read -p "$(echo -e ${yellowColour}Ingresa MP3 o MP4 según lo que quieras descargar: ${endColour})" RESPUESTA
+read -pr "$(echo -e "${yellowColour}"Ingresa MP3 o MP4 según lo que quieras descargar: "${endColour}")" RESPUESTA
 case "$RESPUESTA" in
    mp3|MP3|mP3|Mp3)
-    read -p "$(echo -e $AUDIO ${blueColour}Pega el link del video: ${endColour})" URL
+    read -pr "$(echo -e $AUDIO "${blueColour}"Pega el link del video: "${endColour}")" URL
     youtube-dl -q -x --audio-format mp3 --output "%(title)s.%(ext)s" "$URL"
     ;;
    mp4|MP4|mP4|Mp4)
-    read -p "$(echo -e $VIDEO ${blueColour}Pega el link del video: ${endColour})" URL
+    read -pr "$(echo -e $VIDEO "${blueColour}"Pega el link del video: "${endColour}")" URL
     youtube-dl -q -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' --output "%(title)s.%(ext)s" "$URL"
     ;;
   *)

@@ -15,11 +15,16 @@ function ctrl_c(){
         exit 0
 }
 
+if ! [ "$(command -v xclip)" ]; then
+    echo -e "${blueColour}Instalando dependencias ${endColour}"
+    sudo apt install -y xclip
+fi
+
+# archivo con puertos
 if [ $1 ]; then
     echo -e "\n${greenColour}El listado de puertos ABIERTOS se copio al portapapeles!!! ${endColour}"
     cat $1 | grep -oP '\d{1,5}/closed' | cut -d/ -f1 | xargs | tr ' ' ',' | xclip -sel clip
 else
-    echo -e "${blueColour}[requerimientos]: Instalar el programa xclip ${endColour}"
-    echo -e "${redColour}[Uso]: \t\t  check_open_ports.sh FILE ${endColour}"
+    echo -e "${purpleColour}[Uso]: \t\t  check_open_ports.sh FILE ${endColour}"
     exit 0
 fi
