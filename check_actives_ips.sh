@@ -1,32 +1,26 @@
 #!/bin/bash
 
 #Colores
-greenColour="\e[0;32m\033[1m"
-redColour="\e[0;31m\033[1m"
-yellowColour="\e[0;33m\033[1m"
-blueColour="\e[0;34m\033[1m"
-purpleColour="\e[0;35m\033[1m"
-endColour="\033[0m\e[0m"
+ROJO="\e[0;31m\033[1m"
+AMARILLO="\e[0;33m\033[1m"
+FIN="\033[0m\e[0m"
 
-#CTRL_c
+#ctrl_c
 trap ctrl_c INT
 function ctrl_c(){
-        echo -e "\n${redColour}[++] Programa Terminado [++]${endColour}"
-        exit 0
+    echo -e "\n${ROJO}[CHECK_IPS] Programa Terminado ${FIN}"
+    exit 0
 }
 
-# archivo con listado de ips
-FILE=$1
+# variables
+LISTADO=$1
+SCRIPT=$(basename $0) # referencia al nombre del script
 
-if [ $1 ]; then
-
+if [ $# -eq 1 ]; then # chequea que haya 1 argumento
     while read LINE; do
-        ping -c 1 $LINE | grep 64| awk '{print $4}' | tr ':' ' '
-    done < $FILE
-
+        ping -c 1 $LINE | grep '64';
+    done < $LISTADO
 else
-
- echo -e "${yellowColour}[Uso]: check_system.sh FILE ${endColour}"
- exit 0
-
+    echo -e "${AMARILLO}[CHECK_IPS] [Uso]: $SCRIPT lista.txt ${FIN}"
+    exit 0
 fi

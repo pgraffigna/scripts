@@ -1,30 +1,32 @@
 #!/bin/bash
 
-#Colores
-greenColour="\e[0;32m\033[1m"
-redColour="\e[0;31m\033[1m"
-yellowColour="\e[0;33m\033[1m"
-blueColour="\e[0;34m\033[1m"
-purpleColour="\e[0;35m\033[1m"
-endColour="\033[0m\e[0m"
+# colores
+VERDE="\e[0;32m\033[1m"
+ROJO="\e[0;31m\033[1m"
+AMARILLO="\e[0;33m\033[1m"
+FIN="\033[0m\e[0m"
 
-# CTRL_C
+# ctrl_C
 trap ctrl_c INT
 function ctrl_c(){
-        echo -e "\n${redColour}Programa Terminado ${endColour}"
-        exit 0
+    echo -e "\n${ROJO}[CHECK_OPEN] Programa Terminado ${FIN}"
+    exit 0
 }
 
+# variables
+SCRIPT=$(basename $0) # referencia al nombre del script
+ARCHIVO=$1 # archivo con escaneo nmap con opcion -oG --grepable
+
+
 if ! [ "$(command -v xclip)" ]; then
-    echo -e "${blueColour}Instalando dependencias ${endColour}"
+    echo -e "${AMARILLO}[CHECK_OPEN] Instalando dependencias ${FIN}"
     sudo apt install -y xclip
 fi
 
-# archivo con puertos
-if [ $1 ]; then
-    echo -e "\n${greenColour}El listado de puertos ABIERTOS se copio al portapapeles!!! ${endColour}"
-    cat $1 | grep -oP '\d{1,5}/closed' | cut -d/ -f1 | xargs | tr ' ' ',' | xclip -sel clip
+if [ $# -eq 1 ]; then
+    echo -e "\n${VERDE}[CHECK_OPEN] El listado de puertos ABIERTOS se copio al portapapeles!!! ${FIN}"
+    cat $ARCHIVO | grep -oP '\d{1,5}/closed' | cut -d/ -f1 | xargs | tr ' ' ',' | xclip -sel clip
 else
-    echo -e "${purpleColour}[Uso]: \t\t  check_open_ports.sh FILE ${endColour}"
+    echo -e "${AMARILLO}[CHECK_OPEN] [Uso]: $SCRIPT archivo.txt ${FIN}"
     exit 0
 fi
