@@ -14,7 +14,7 @@ function ctrl_c(){
 }
 
 echo -e "\n${yellowColour}[!!] Instalando KVM ${endColour}"
-sudo apt update; sudo apt install -y qemu-kvm qemu libvirt-bin virtinst bridge-utils cpu-checker virt-viewer
+sudo apt update && sudo apt install -y qemu-kvm qemu libvirt-bin virtinst bridge-utils cpu-checker virt-viewer
 
 echo -e "\n${yellowColour}[!!] Chequeando que el CPU tiene habilitada la virtualización (VT-x) ${endColour}"
 kvm-ok &> /dev/null

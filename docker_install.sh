@@ -33,7 +33,7 @@ sudo add-apt-repository \
 echo -e "${yellowColor}Actualiza la cache de los repos ${endColor}"
 sudo apt update
 
-echo -e "${yellowColor}Instalación de docker-ce + docker-compose ${endColor}" 
+echo -e "${yellowColor}Instalación de docker-ce + docker-compose ${endColor}"
 sudo apt install -y docker-ce docker-compose
 
 echo -e "${yellowColor}Agrega usuario al grupo docker ${endColor}"

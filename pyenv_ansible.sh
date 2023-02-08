@@ -12,12 +12,16 @@ function ctrl_c(){
         exit 0
 }
 
-# validacion de dependecias
-echo -e "\n${azul}[++] Instalando dependencias !![++] ${end}\n"
-sudo apt install -y python3-venv
+## validacion de dependecias
+dpkg -L python3-venv &>/dev/null
+
+if [ "$?" -eq 1 ]; then
+	echo -e "\n${azul}[++] Instalando dependencias !![++] ${end}\n"
+	sudo apt update && sudo apt install -y python3-venv
+fi
 
 # ansible_version
-read -rp "$(echo -e "${azul}"Ingresa la version de ansible a instalar por ej 2.10 \>\> "${end}")" ANSIBLE_VERSION
+read -p "$(echo -e ${azul}Ingresa la version de ansible a instalar por ej 2.9 \>\> ${end})" ANSIBLE_VERSION
 
 # crea el nuevo entorno
 /usr/bin/python3 -m venv ansible_"$ANSIBLE_VERSION"
@@ -34,4 +38,3 @@ python3 -m pip install ansible=="$ANSIBLE_VERSION"
 # mensaje exitoso
 echo -e "${verde}[++] El entorno fue creado exitosamente!!! [++]${end}"
 
-## source pyenv.sh

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #Colores
 greenColour="\e[0;32m\033[1m"
 redColour="\e[0;31m\033[1m"
@@ -16,7 +17,7 @@ function ctrl_c(){
 echo -e "${yellowColour}Actualiza los repos e instala el programa ${endColour}"
 sudo apt update && sudo apt install -y chntpw
 
-echo -e "\n${yellowColour}Lista particiones (para saber donde esta el Windows) ${endColour}" 
+echo -e "\n${yellowColour}Lista particiones (para saber donde esta el Windows) ${endColour}"
 lsblk -f
 
 echo -e "\n${yellowColour}Elegi la partición con windows${endColour}"

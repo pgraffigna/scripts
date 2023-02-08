@@ -14,7 +14,7 @@ function ctrl_c(){
 }
 
 echo -e "\n${yellowColour}Instalando dependencias ${endColour}"
-sudo apt update; sudo apt install -y xfce4 xfce4-goodies tightvncserver
+sudo apt update && sudo apt install -y xfce4 xfce4-goodies tightvncserver
 
 echo -e "\n${yellowColour}Configurando VNC - La contraseña debe tener entre seis y ocho caracteres de largo ${endColour}"
 vncserver

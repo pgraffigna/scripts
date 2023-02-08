@@ -1,9 +1,14 @@
 #!/bin/bash
-hosts=("192.168.0" "192.168.1")
 
-for host in "${hosts[@]}"; do
-	echo -e "\nBuscando hosts activos en la red $host.0/24\n"
-	for i in $(seq 1 254); do
-		timeout 1 bash -c "ping -c1 $host.$i" &>/dev/null && echo "el equipo $host.$i esta activo" &
-	done; wait
+#ctrl_c
+trap ctrl_c INT
+function ctrl_c(){
+    echo -e "\n[HOSTS_DISCOVER] Programa Terminado por el usuario"
+    exit 0
+}
+
+read -p "Ingresa la red a escaner (ej: 192.168.121.) --> " subnet
+
+for ip in $(seq 1 254); do
+  ( timeout 1 ping -c1 ${subnet}${ip} > /dev/null && echo "La IP $subnet$ip esta ACTIVA" ) &
 done
