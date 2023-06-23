@@ -13,7 +13,7 @@ function ctrl_c(){
         exit 0
 }
 
-# cargando los datos de la VM 
+# cargando los datos de la VM
 read -pr "$(echo -e "${yellowColor}"Ingresa el nombre de la VM \>\>  "${endColor}")" NOMBRE_VM
 read -pr "$(echo -e "${yellowColor}"Ingresa el nombre del ISO \>\>  "${endColor}")" NOMBRE_ISO
 read -pr "$(echo -e "${yellowColor}"Ingresa el nombre del DISCO \>\>  "${endColor}")" NOMBRE_DISCO
