@@ -1,3 +1,3 @@
-# bash_scripts
+# scripts
 
-Repo con scripts en bash.
+Repo con scripts en bash y powershell
